@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from django.http import HttpResponseRedirect
 from django.core.files.storage import default_storage
-from .forms import ImageUploadForm
+# from .forms import RadioEditForm
 from django.contrib.auth.models import User
 
 
@@ -20,12 +20,19 @@ def upload_img(request):
         img = request.FILES['imgToUpload']
         post = Post(name=img.name, image=img)
         post.save()
-        return HttpResponseRedirect('')
+        context = {
+            'title': 'Edit',
+            'post': post,
+        }
+        return render(request, 'editor/edit.html', context=context)
     return redirect('/')
 
+
 def edit(request):
-    context = {
-        'title': 'Edit',
-        'post': Post.objects.last(),
-    }
-    return render(request, 'editor/edit.html', context=context)
+    if request.method == 'POST':
+        context = {
+            'title': 'Edit',
+            'post': Post.objects.last(),
+        }
+
+        return render(request, 'editor/edit.html', context=context)

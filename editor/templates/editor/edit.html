@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +9,37 @@
 <div class="container">
     {% if post %}
         <img src='/{{post.image.url}}' height=70% width=70%/>
+        <form action="{% url 'edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div>
+                <div>
+                    <div>
+                        <label for="resize-height">Height: </label>
+                        <input id="resize-height" type="number" name="resize-height" value="{{post.image.height}}">
+                        <label for="resize-width">Width: </label>
+                        <input id="resize-width" type="number" name="resize-width" value="{{post.image.width}}">
+                        <button type="submit" name="resize">Resize</button>
+                    </div>
+                    <div>
+                        <label for="angle">Rotation Angle:</label>
+                        <input id="angle" type="number" name="angle" value="0.0">
+                        <button type="submit" name="rotate">Rotate</button>
+                    </div>
+                    <div>
+                        <label for="crop-left">Left: </label>
+                        <input id="crop-left" type="number" name="crop-left" value="0">
+                        <label for="crop-upper">Upper: </label>
+                        <input id="crop-upper" type="number" name="crop-upper" value="0">
+                        <label for="crop-right">Right: </label>
+                        <input id="crop-right" type="number" name="crop-right" value="{{post.image.height}}">
+                        <label for="crop-lower">Lower: </label>
+                        <input id="crop-lower" type="number" name="crop-lower" value="{{post.image.width}}">
+                        <button type="submit" name="crop">Crop</button>
+                    </div>
+                    <div><button type="submit" name="BAW">Black and White</button></div>
+                </div>
+            </div>
+        </form>
     {% endif %}
 </div>
 
