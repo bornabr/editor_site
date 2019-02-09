@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% if title %}
+        <title>Borna's Editor - {{ title }}</title>
+    {% else %}
+        <title>Borna's Editor</title>
+    {% endif %}
+</head>
 <body>
-
 <form action="{% url 'upload_img' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <p>
@@ -9,7 +16,6 @@
     </p>
     <input type="submit" value="Upload Img" name="submit">
 </form>
-
 </body>
 </html>
 

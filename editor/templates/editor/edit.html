@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    {% if title %}
+        <title>Borna's Editor - {{ title }}</title>
+    {% else %}
+        <title>Borna's Editor</title>
+    {% endif %}
 </head>
 <body>
 
 <div class="container">
     {% if post %}
-        <img src='/{{post.image.url}}' height=70% width=70%/>
+        <img src='/{{ post.image.url }}' height=70% width=70%/>
         <form action="{% url 'edit' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+            {% csrf_token %}
             <div>
                 <div>
                     <div>
-                        <label for="resize-height">Height: </label>
-                        <input id="resize-height" type="number" name="resize-height" value="{{post.image.height}}">
-                        <label for="resize-width">Width: </label>
-                        <input id="resize-width" type="number" name="resize-width" value="{{post.image.width}}">
-                        <button type="submit" name="resize">Resize</button>
+                        <label for="resize-height">Height: <input id="resize-height" type="number" name="resize-height"
+                                                                  placeholder="max: {{ post.image.height }}"
+                                                                  max="{{ post.image.height }}"  >
+                        </label>
+                        <label for="resize-width">Width: <input id="resize-width" type="number" name="resize-width"
+                                                                placeholder="max: {{ post.image.width }}"
+                                                                max="{{ post.image.width }}">
+                        </label>
+                        <input type="submit" name="resize" value="Resize">
                     </div>
                     <div>
-                        <label for="angle">Rotation Angle:</label>
-                        <input id="angle" type="number" name="angle" value="0.0">
-                        <button type="submit" name="rotate">Rotate</button>
+                        <label for="rotate-angle">Rotation Angle: <input id="rotate-angle" type="number" name="rotate-angle" value="0.0">
+                        </label>
+                        <input type="submit" name="rotate" value="Rotate">
                     </div>
                     <div>
-                        <label for="crop-left">Left: </label>
-                        <input id="crop-left" type="number" name="crop-left" value="0">
-                        <label for="crop-upper">Upper: </label>
-                        <input id="crop-upper" type="number" name="crop-upper" value="0">
-                        <label for="crop-right">Right: </label>
-                        <input id="crop-right" type="number" name="crop-right" value="{{post.image.height}}">
-                        <label for="crop-lower">Lower: </label>
-                        <input id="crop-lower" type="number" name="crop-lower" value="{{post.image.width}}">
-                        <button type="submit" name="crop">Crop</button>
+                        <label for="crop-left">Left: <input id="crop-left" type="number" name="crop-left" value="0">
+                        </label>
+                        <label for="crop-upper">Upper: <input id="crop-upper" type="number" name="crop-upper" value="0">
+                        </label>
+                        <label for="crop-right">Right: <input id="crop-right" type="number" name="crop-right"
+                                                              value="{{ post.image.height }}">
+                        </label>
+                        <label for="crop-lower">Lower: <input id="crop-lower" type="number" name="crop-lower"
+                                                              value="{{ post.image.width }}">
+                        </label>
+                        <input type="submit" name="crop" value="Crop">
                     </div>
-                    <div><button type="submit" name="BAW">Black and White</button></div>
+                    <div>
+                        <input type="submit" name="BAW" value="Black and White">
+                    </div>
+                    <div>
+                        <input type="submit" name="share" value="Share!!">
+                        <input type="submit" name="done" value="Done!!">
+                    </div>
                 </div>
             </div>
         </form>

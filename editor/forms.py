@@ -9,6 +9,6 @@ class ImageUploadForm(forms.Form):
     image = forms.FileField()
 
 
-class RadioEditForm(forms.Form):
-    """Choose which kind of edit form"""
-    edit_choice = forms.ChoiceField(choices=choices.EDIT_CHOICES, widget=forms.RadioSelect)
+# class EditForm(forms.Form):
+    # """Get the details of Editing"""
+    # edit_choice = forms.ChoiceField(choices=choices.EDIT_CHOICES, widget=forms.RadioSelect)
