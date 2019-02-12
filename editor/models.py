@@ -11,7 +11,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='')
     is_share = models.BooleanField(default=False)
     date_posted = models.DateTimeField(default=timezone.now)
-    # session_id = models.CharField(max_length=100, default='no session')
+    session_id = models.CharField(max_length=100, default='no session')
 
     def url(self):
         # returns a URL

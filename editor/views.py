@@ -18,14 +18,14 @@ def upload_img(request):
 
         # try:
         img = request.FILES['imgToUpload']
-        print(img)
         # except:
             # return render(request, 'editor/home.html')
             # return redirect('/')
         post = Post(name=img.name, image=img)
         request.session['new_post'] = post
-        print(request.session.session_key)
-        # post.session_id = request.session.session_key
+        if not request.session.session_key:
+            request.session.save()
+        post.session_id = request.session.session_key
         post.save()
         context = {
             'title': 'Edit',
