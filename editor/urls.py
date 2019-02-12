@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('upload/', views.upload_img, name='upload_img'),
     path('edit/', views.edit, name='edit'),
-    # path('share/', views.share, name='share'),
+    path('share/', views.share, name='share'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

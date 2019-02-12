@@ -1,10 +1,26 @@
 body {
-  background: #fafafa;
+  background: #212529;
   color: #333333;
   margin-top: 5rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+h1, h2, h3, h4, h5, h6 , label{
+  color: #ffffff;
 }
 
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+.rounded {
+  border-radius: 0.55rem!important;
+}
+
+.btn {
+  font-size: 0.65rem!important;
+}
+
+.custom-file-label::after {
+  display: none;
+}
