@@ -17,10 +17,6 @@ h1, h2, h3, h4, h5, h6 , label{
   border-radius: 0.55rem!important;
 }
 
-.btn {
-  font-size: 0.65rem!important;
-}
-
 .custom-file-label::after {
   display: none;
 }
